@@ -1,0 +1,21 @@
+extends layout
+
+block content
+ 
+ .container
+   h1= title
+   .form-group
+     label(for='name') Item Name
+     input#name.form-control(type='text', placeholder="Contact Name")
+   .form-group
+     label(for="price") Price
+     input#email.form-control(type='Number', placeholder="Price")
+   .form-group
+     label(for="description") Item Description
+     input#info.form-control(type='text', placeholder="Item Description")
+   button.btn.btn-success#add(type="submit") Create
+   a.btn.btn-danger(href='/') Back
+ 
+ block scripts
+   script(src='js/addItem.js')
+  

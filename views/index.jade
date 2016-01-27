@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .container
+    h1=title
+    a.btn.btn-default(href='/addItem') Add Item
+    
+    table.table
+      thead
+        tr
+          th Name
+          th Price
+          th Description
+      tbody#itemList
+        each item in items
+          tr
+            td=item.name
+            td=item.price
+            td=item.description
+block scripts
+  script(src='js/itemIndex.js')       
+  
