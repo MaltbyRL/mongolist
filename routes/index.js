@@ -9,9 +9,16 @@ router.get('/', function(req, res, next) {
 
     res.render('index', { title: 'Express', items: foundItems });
   });
-
-
-
 });
+
+router.get('/addItem', function(req, res, next) {
+  res.render('addItem');
+});
+
+router.get('/itemSelect', function(req, res, next) {
+  res.render('itemSelect');
+});
+
+
 
 module.exports = router;

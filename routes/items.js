@@ -1,19 +1,51 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 
-//get all array of items
-router.get('/', function(req, res) {
-  res.send('array of items!');
+var Item = require('../models/item');
+
+// get all items
+router.get('/', function(req, res, next) {
+  Item.find({}, function(err, items) {
+    res.status(err ? 400 : 200).send(err || items);
+  });
 });
 
-//create new item
+
+// create new item
 router.post('/', function(req, res) {
-  res.send(req.body);
+  var item = new Item(req.body);
+  console.log("created new item", item);
+  item.save(function(err, savedItem) {
+    res.status(err ? 400 : 200).send(err || savedItem)
+  });
 });
 
-//Update item
-router.put('/', function(req, res) {
-  res.send('trying to update item!');
+
+// remove a item
+router.delete('/:itemId', function(req, res) {
+    Item.findById(req.params.itemId, function(err, item) {
+      item.remove(function(err){
+        res.status(err ? 400 : 200).send(err || null);
+      });
+    });
 });
+
+
+//change any field
+// router.put('/:itemId');
+
+//toggle
+router.put('/:itemId/toggle', function(req, res) {
+  Item.findById(req.params.itemId, function(err, item) {
+    item.isCompleted = !item.isCompleted;
+    item.save(function(err, savedItem) {
+      res.status(err ? 400 : 200).send(err || savedItem);
+    });
+  });
+});
+
+
 
 module.exports = router;

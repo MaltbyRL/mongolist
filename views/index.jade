@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  .container
+  .container(style="color: white; font-family: Times; font-size: 2.3;")
     h1=title
     a.btn.btn-default(href='/addItem') Add Item
+    a.btn.btn-default(href='/itemSelect') Select Item
     
     table.table
       thead
@@ -13,10 +14,11 @@ block content
           th Description
       tbody#itemList
         each item in items
-          tr
+          tr.itemRows
             td=item.name
             td=item.price
             td=item.description
+          
 block scripts
   script(src='js/itemIndex.js')       
   

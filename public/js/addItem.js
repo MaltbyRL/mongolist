@@ -13,10 +13,14 @@ function init(){
   $add.click(addItem);
 }
 
-function addItem(){
+function addItem(e){
   var name = $name.val();
   var description = $description.val();
   var price = $price.val();
+  $price.val('');
+  $description.val('');
+  $name.val('');
+
   $.post('/items', {
     name: name,
     description: description,
