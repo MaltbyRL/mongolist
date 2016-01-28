@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   Item.find({}, function(err, foundItems) {
     if (err) return res.status(400).send(err);
 
-    res.render('index', { title: 'Express', items: foundItems });
+    res.render('index', { title: 'Shop List', items: foundItems });
   });
 });
 

@@ -16,7 +16,9 @@ function init(){
 function addItem(e){
   var name = $name.val();
   var description = $description.val();
-  var price = $price.val();
+  var price = Number($price.val());
+  console.log("Price:", price);
+  var fixedPrice = price.toFixed(2)
   $price.val('');
   $description.val('');
   $name.val('');
@@ -24,7 +26,7 @@ function addItem(e){
   $.post('/items', {
     name: name,
     description: description,
-    price: price
+    price: fixedPrice
   })
   .done(function(data) {
     console.log('response:', data);

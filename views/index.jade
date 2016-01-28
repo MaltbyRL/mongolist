@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .container(style="color: white; font-family: Times; font-size: 2.3;")
+  .container(style="color: darkblue; font-family: Times; font-size: 2.3;")
     h1=title
     a.btn.btn-default(href='/addItem') Add Item
     a.btn.btn-default(href='/itemSelect') Select Item
@@ -9,15 +9,16 @@ block content
     table.table
       thead
         tr
-          th Name
-          th Price
-          th Description
+          th.sortName Name
+          th.sortPrice Price
+          th.descrip Description
       tbody#itemList
         each item in items
           tr.itemRows
-            td=item.name
-            td=item.price
-            td=item.description
+            - var displayPrice = "$" + item.price.toFixed(2)
+            td.name=item.name
+            td.price=displayPrice
+            td.description=item.description
           
 block scripts
   script(src='js/itemIndex.js')       
